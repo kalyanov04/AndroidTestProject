@@ -15,7 +15,7 @@ namespace ToDoList
         }
         public AndroidElement AppTitle { get => driver.FindElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.view.ViewGroup/android.widget.TextView"); }
         public AndroidElement EmptyView { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/toDoEmptyView"); }
-        public IList<AndroidElement> TaskItems { get => driver.FindElementsById("com.avjindersinghsekhon.minimaltodo:id/listItemLinearLayout"); }       
+        public IList<AndroidElement> TaskItems { get => driver.FindElementsById("com.avjindersinghsekhon.minimaltodo:id/listItemLinearLayout"); }
         public AndroidElement OptionsButton { get => driver.FindElementByAccessibilityId("More options"); }
         public IList<AndroidElement> Options { get => driver.FindElementsByXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView"); }
         public AndroidElement AddButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/addToDoItemFAB"); }
@@ -32,6 +32,15 @@ namespace ToDoList
             foreach (var item in TaskItems)
             {
                 TaskNames.Add(item.FindElement(By.Id("com.avjindersinghsekhon.minimaltodo:id/toDoListItemTextview")).Text);
+            }
+            return TaskNames;
+        }
+        public List<string> GetTaskTimes()
+        {
+            List<string> TaskNames = new List<string>(TaskItems.Count);
+            foreach (var item in TaskItems)
+            {
+                TaskNames.Add(item.FindElement(By.Id("com.avjindersinghsekhon.minimaltodo:id/todoListItemTimeTextView")).Text);
             }
             return TaskNames;
         }

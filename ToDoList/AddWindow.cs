@@ -8,6 +8,7 @@ namespace ToDoList
     public class AddWindow
     {
         AppiumDriver<AndroidElement> driver;
+        DatePicker datePickerInstance;
         public AddWindow(AppiumDriver<AndroidElement> driver)
         {
             this.driver = driver;
@@ -19,6 +20,19 @@ namespace ToDoList
         public AndroidElement EditDateField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoDateEditText"); }
         public AndroidElement EditTimeField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoTimeEditText"); }
         public AndroidElement ReminderText { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newToDoDateTimeReminderTextView"); }
+        public DatePicker DatePickerInstance
+        {
+            get
+            {
+                if (datePickerInstance != null)
+                    return datePickerInstance;
+                else
+                {
+                    datePickerInstance = new DatePicker(driver);
+                    return datePickerInstance;
+                }
+            }
+        }
         public bool IsOpened()
         {
             if (ExitButton.Enabled & EditTextField.Text.Equals("") & RemindSwitcher.GetAttribute("checked").Equals("false"))
