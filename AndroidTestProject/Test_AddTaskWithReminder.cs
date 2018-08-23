@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using System.Threading;
 using ToDoList;
 
 namespace AndroidTestProject
@@ -10,18 +7,18 @@ namespace AndroidTestProject
     public class Test_AddTaskWithReminder : TestInitialize
     {
         MainWindow mainWindowInstance;
-        AddWindow addWindowInstance;
+        EditTaskWindow addWindowInstance;
         static object[] testData =
         {
             new object[]{"Sep 3, 2018  4:20 AM", "03 September 2018", "4:20am", "Get rect"},
-            new object[]{"Apr 9, 2020  7:40 PM", "09 April 2020", "7:40pm",  "Meet Antonio"},
+            new object[]{"May 10, 2020  7:40 PM", "10 May 2020", "7:40pm",  "Meet Antonio"},
             new object[]{"Aug 2, 2030  12:00 AM", "02 August 2030", "12:00am", "Eat Pizza"}
         };
         [OneTimeSetUp]
         public void Test_Initialize()
         {
             mainWindowInstance = new MainWindow(driver);
-            addWindowInstance = new AddWindow(driver);
+            addWindowInstance = new EditTaskWindow(driver);
         }
         [Test, TestCaseSource("testData")]
         public void Test_AddTaskWithReminder_Success(string expected, string date, string time, string taskName)
@@ -34,7 +31,7 @@ namespace AndroidTestProject
             addWindowInstance.EditTextField.SendKeys(taskName);
             addWindowInstance.EditTimeField.Click();
             addWindowInstance.TimePickerInstance.ClockWidget.SendKeys(time);
-            addWindowInstance.TimePickerInstance.ConfirmBUtton.Click();
+            addWindowInstance.TimePickerInstance.ConfirmButton.Click();
             addWindowInstance.ApproveButton.Click();
             Assert.AreEqual(expected, mainWindowInstance.GetTaskTimes()[mainWindowInstance.GetTaskTimes().Count - 1]);
         }

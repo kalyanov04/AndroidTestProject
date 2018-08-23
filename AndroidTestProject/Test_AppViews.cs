@@ -8,13 +8,13 @@ namespace AndroidTestProject
     public class Test_AppViews:TestInitialize
     {
         MainWindow mainWindowInstance;
-        AddWindow addWindowInstance;
+        EditTaskWindow addWindowInstance;
         SettingsWindow settingsWindowInstance;
         [OneTimeSetUp]
         public void Test_Initialize()
         {
             mainWindowInstance = new MainWindow(driver);
-            addWindowInstance = new AddWindow(driver);
+            addWindowInstance = new EditTaskWindow(driver);
             settingsWindowInstance = new SettingsWindow(driver);
         }
         [Test]

@@ -11,6 +11,6 @@ namespace ToDoList
             this.driver = driver;
         }
         public AndroidElement ClockWidget { get => driver.FindElementByXPath("//android.widget.FrameLayout"); }
-        public AndroidElement ConfirmBUtton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/ok"); }
+        public AndroidElement ConfirmButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/ok"); }
     }
 }

@@ -10,7 +10,7 @@ namespace AndroidTestProject
     class Test_AddTask:TestInitialize
     {
         MainWindow mainWindowInstance;
-        AddWindow addWindowInstance;
+        EditTaskWindow addWindowInstance;
         static object[] testData =
             {
                 new object[]{"Do Exercise"},
@@ -21,7 +21,7 @@ namespace AndroidTestProject
         public void Test_Initialize()
         {
             mainWindowInstance = new MainWindow(driver);
-            addWindowInstance = new AddWindow(driver);
+            addWindowInstance = new EditTaskWindow(driver);
         }
         [Test, TestCaseSource("testData")]
         public void Test1_AddTaskWithoutReminder_TaskAdded(string taskName)

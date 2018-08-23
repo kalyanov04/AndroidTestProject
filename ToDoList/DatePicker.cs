@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDoList
 {
@@ -17,11 +14,11 @@ namespace ToDoList
         {
             this.driver = driver;
         }
-        public AndroidElement PickedYear { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_year"); }
-        public IList<AndroidElement> DatePickerYears { get => driver.FindElementsById("com.avjindersinghsekhon.minimaltodo:id/month_text_view"); }
-        public AndroidElement PickedMonth { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_month"); }
-        public AndroidElement PickedDay { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_day"); }
-        public IList<AndroidElement> DateSelector { get => driver.FindElementsByXPath("//*[@class='android.widget.ListView']/*[@class='android.view.View']/*[@class='android.view.View']"); }
+        private AndroidElement PickedYear { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_year"); }
+        private IList<AndroidElement> DatePickerYears { get => driver.FindElementsById("com.avjindersinghsekhon.minimaltodo:id/month_text_view"); }
+        private AndroidElement PickedMonth { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_month"); }
+        private AndroidElement PickedDay { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/date_picker_day"); }
+        private IList<AndroidElement> DateSelector { get => driver.FindElementsByXPath("//*[@class='android.widget.ListView']/*[@class='android.view.View']/*[@class='android.view.View']"); }
         public AndroidElement ConfirmButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/ok"); }
         public void PickDate(string dateToPick)
         {
@@ -72,9 +69,11 @@ namespace ToDoList
                 if (dateFlag)
                 {
                     if (months.IndexOf(month)+1<DateTime.Now.Month)                  
-                        driver.Swipe(DateSelector.First().Location.X, DateSelector.First().Location.Y, DateSelector.First().Location.X, DateSelector.First().Location.Y + 500, 400);                   
+                        driver.Swipe(DateSelector.First().Location.X, DateSelector.First().Location.Y, 
+                            DateSelector.First().Location.X, DateSelector.First().Location.Y + 500, 400);                   
                     else
-                        driver.Swipe(DateSelector.Last().Location.X, DateSelector.Last().Location.Y, DateSelector.Last().Location.X, DateSelector.Last().Location.Y - 500, 400);
+                        driver.Swipe(DateSelector.Last().Location.X, DateSelector.Last().Location.Y, 
+                            DateSelector.Last().Location.X, DateSelector.Last().Location.Y - 500, 400);
                 }
             }
         }

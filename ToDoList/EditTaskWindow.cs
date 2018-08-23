@@ -1,16 +1,14 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
+﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace ToDoList
 {
-    public class AddWindow
+    public class EditTaskWindow
     {
         AppiumDriver<AndroidElement> driver;
         DatePicker datePickerInstance;
         TimePicker timePickerInstance;
-        public AddWindow(AppiumDriver<AndroidElement> driver)
+        public EditTaskWindow(AppiumDriver<AndroidElement> driver)
         {
             this.driver = driver;
         }
@@ -21,6 +19,7 @@ namespace ToDoList
         public AndroidElement EditDateField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoDateEditText"); }
         public AndroidElement EditTimeField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoTimeEditText"); }
         public AndroidElement ReminderText { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newToDoDateTimeReminderTextView"); }
+        public AndroidElement InfoTextView { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newToDoDateTimeReminderTextView"); }
         public DatePicker DatePickerInstance
         {
             get
