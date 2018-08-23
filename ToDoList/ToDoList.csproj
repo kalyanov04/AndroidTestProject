@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutWindow.cs" />
     <Compile Include="EditTaskWindow.cs" />
     <Compile Include="DatePicker.cs" />
     <Compile Include="MainWindow.cs" />

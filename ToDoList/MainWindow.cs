@@ -59,5 +59,21 @@ namespace ToDoList
             }
             return TaskNames;
         }
+        public void SelectOption(string option)
+        {
+            OptionsButton.Click();
+            foreach (var item in Options)
+            {
+                try
+                {
+                    if (item.Text.Equals(option))
+                    {
+                        item.Click();
+                        break;
+                    }
+                }
+                catch (NoSuchElementException) { }
+            }
+        }
     }
 }
