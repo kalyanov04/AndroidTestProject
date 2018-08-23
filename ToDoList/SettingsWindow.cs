@@ -12,12 +12,15 @@ namespace ToDoList
         {
             this.driver = driver;
         }
+        public AndroidElement OptionsList { get => driver.FindElementById("android:id/list"); }
         public AndroidElement NightModeTitle { get => driver.FindElementById("android:id/title"); }
         public AndroidElement NightModeCheckbox { get => driver.FindElementById("android:id/checkbox"); }     
         public AndroidElement BackButton { get => driver.FindElementByAccessibilityId("Navigate up"); }
-        public bool IsOpened()
+        public static bool IsOpened(AppiumDriver<AndroidElement> driver)
         {
-            if (NightModeTitle.Enabled & BackButton.Enabled & NightModeCheckbox.GetAttribute("checked").Equals("false"))
+            if (driver.FindElementById("android:id/title").Enabled &
+                driver.FindElementByAccessibilityId("Navigate up").Enabled &
+                driver.FindElementById("android:id/checkbox").Enabled)
                 return true;
             else
                 return false;

@@ -20,7 +20,7 @@ namespace AndroidTestProject
         [Test]
         public void Test1_OpenMainWindow_Opened()
         {                
-            Assert.IsTrue(mainWindowInstance.IsOpened());
+            Assert.IsTrue(MainWindow.IsOpened(driver));
         }
         [Test]
         public void Test2_OpenSettingsWindow_Opened()
@@ -37,7 +37,7 @@ namespace AndroidTestProject
                     }
                 } catch (NoSuchElementException) { }
             }          
-            Assert.IsTrue(settingsWindowInstance.IsOpened());
+            Assert.IsTrue(SettingsWindow.IsOpened(driver));
         }
         [Test]
         public void Test3_OpenAddWindow_Opened()

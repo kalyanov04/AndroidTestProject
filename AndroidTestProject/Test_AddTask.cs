@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using System.Threading;
 using ToDoList;
@@ -25,7 +26,6 @@ namespace AndroidTestProject
         [Test, TestCaseSource("testData")]
         public void Test1_AddTaskWithoutReminder_TaskAdded(string taskName)
         {
-            Thread.Sleep(1000);
             mainWindowInstance.AddButton.Click();
             addWindowInstance.EditTextField.SendKeys(taskName);
             addWindowInstance.ApproveButton.Click();
@@ -38,7 +38,7 @@ namespace AndroidTestProject
             {
                 var taskItem = mainWindowInstance.TaskItems[0];
                 driver.Swipe(taskItem.Location.X,taskItem.Location.Y, taskItem.Location.X + 500, taskItem.Location.Y, 200);
-                Thread.Sleep(1000);
+                //wait.Until((driver) => MainWindow.IsOpened((AppiumDriver<AndroidElement>)driver));
             }
             Assert.IsTrue(mainWindowInstance.EmptyView.Enabled);
         }

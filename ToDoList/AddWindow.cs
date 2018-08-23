@@ -9,6 +9,7 @@ namespace ToDoList
     {
         AppiumDriver<AndroidElement> driver;
         DatePicker datePickerInstance;
+        TimePicker timePickerInstance;
         public AddWindow(AppiumDriver<AndroidElement> driver)
         {
             this.driver = driver;
@@ -33,6 +34,21 @@ namespace ToDoList
                 }
             }
         }
+
+        public TimePicker TimePickerInstance
+        {
+            get
+            {
+                if (timePickerInstance != null)
+                    return timePickerInstance;
+                else
+                {
+                    timePickerInstance = new TimePicker(driver);
+                    return timePickerInstance;
+                }
+            }
+        }
+
         public bool IsOpened()
         {
             if (ExitButton.Enabled & EditTextField.Text.Equals("") & RemindSwitcher.GetAttribute("checked").Equals("false"))

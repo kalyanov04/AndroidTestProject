@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 using System.Collections.Generic;
 
 namespace ToDoList
@@ -19,9 +20,24 @@ namespace ToDoList
         public AndroidElement OptionsButton { get => driver.FindElementByAccessibilityId("More options"); }
         public IList<AndroidElement> Options { get => driver.FindElementsByXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView"); }
         public AndroidElement AddButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/addToDoItemFAB"); }
-        public bool IsOpened()
+        public static bool AreTasksPresent(AppiumDriver<AndroidElement> driver)
         {
-            if (AppTitle.Text == "Minimal" & OptionsButton.Enabled & EmptyView.Enabled & AddButton.Enabled)
+            try
+            {
+                driver.FindElementsById("com.avjindersinghsekhon.minimaltodo:id/listItemLinearLayout");
+                return true;
+            }
+            catch (Exception)
+            {
+                driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/toDoEmptyView");
+                return false;
+            }
+        }
+        public static bool IsOpened(AppiumDriver<AndroidElement> driver)
+        {
+            if (driver.FindElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.view.ViewGroup/android.widget.TextView").Text == "Minimal" &
+                 driver.FindElementByAccessibilityId("More options").Enabled & 
+                 driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/addToDoItemFAB").Enabled)
                 return true;
             else
                 return false;

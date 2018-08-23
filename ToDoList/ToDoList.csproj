@@ -68,6 +68,7 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsWindow.cs" />
+    <Compile Include="TimePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
