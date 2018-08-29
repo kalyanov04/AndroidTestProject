@@ -18,26 +18,27 @@ namespace AndroidTestProject
         public void Test_PastDateSetting_TodaySet()
         {
             mainWindowInstance.AddButton.Click();
-            addWindowInstance.EditTextField.SendKeys("New Task");
-            addWindowInstance.RemindSwitcher.Click();
-            addWindowInstance.EditDateField.Click();
-            addWindowInstance.DatePickerInstance.PickDate("07 July 2017");
-            addWindowInstance.DatePickerInstance.ConfirmButton.Click();
+            addWindowInstance.SetTaskName("New Task")
+                .SwitchReminder()
+                .SetDate("07 July 2017");        
             Assert.AreEqual("Today", addWindowInstance.EditDateField.Text);
         }
         [Test]
         public void Test_PastTimeSettings_ErrorMessage()
         {
-            addWindowInstance.EditTimeField.Click();
-            addWindowInstance.TimePickerInstance.ClockWidget.SendKeys("1200am");
-            addWindowInstance.TimePickerInstance.ConfirmButton.Click();
+            addWindowInstance.SetTime("12:00am");
             Assert.AreEqual("The date you entered is in the past.", addWindowInstance.InfoTextView.Text);
         }
         [Test]
         public void Test_PastTimeSettingsAddTask_EmptyList()
         {
-            addWindowInstance.ApproveButton.Click();
+            addWindowInstance.ConfirmChanges();
             Assert.IsTrue(mainWindowInstance.EmptyView.Displayed);
+        }
+        [OneTimeTearDown]
+        public void Test_Finalize()
+        {
+            driver.Quit();
         }
     }
 }

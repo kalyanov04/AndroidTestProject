@@ -20,19 +20,7 @@ namespace AndroidTestProject
         [Test]
         public void Test_EnableNightMode_BackgroundColorIsBlack()
         {
-            mainWindowInstance.OptionsButton.Click();
-            foreach (var item in mainWindowInstance.Options)
-            {
-                try
-                {
-                    if (item.Text.Equals("Settings"))
-                    {
-                        item.Click();
-                        break;
-                    }
-                }
-                catch (NoSuchElementException) { }
-            }
+            mainWindowInstance.SelectOption("Settings");
             settingsWindowInstance.NightModeCheckbox.Click();
             wait.Until((driver) => SettingsWindow.IsOpened((AndroidDriver<AndroidElement>)driver));
             bool actual = settingsWindowInstance.NightModeCheckbox.GetAttribute("checked").Equals("true");

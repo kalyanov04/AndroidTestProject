@@ -24,15 +24,11 @@ namespace AndroidTestProject
         public void Test_AddTaskWithReminder_Success(string expected, string date, string time, string taskName)
         {
             mainWindowInstance.AddButton.Click();
-            addWindowInstance.RemindSwitcher.Click();
-            addWindowInstance.EditDateField.Click();
-            addWindowInstance.DatePickerInstance.PickDate(date);
-            addWindowInstance.DatePickerInstance.ConfirmButton.Click();
-            addWindowInstance.EditTextField.SendKeys(taskName);
-            addWindowInstance.EditTimeField.Click();
-            addWindowInstance.TimePickerInstance.ClockWidget.SendKeys(time);
-            addWindowInstance.TimePickerInstance.ConfirmButton.Click();
-            addWindowInstance.ApproveButton.Click();
+            addWindowInstance.SetTaskName(taskName)
+                .SwitchReminder()
+                .SetDate(date)
+                .SetTime(time)
+                .ConfirmChanges();       
             Assert.AreEqual(expected, mainWindowInstance.GetTaskTimes()[mainWindowInstance.GetTaskTimes().Count - 1]);
         }
         [OneTimeTearDown]

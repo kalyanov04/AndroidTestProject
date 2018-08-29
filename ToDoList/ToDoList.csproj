@@ -67,6 +67,7 @@
     <Compile Include="EditTaskWindow.cs" />
     <Compile Include="DatePicker.cs" />
     <Compile Include="MainWindow.cs" />
+    <Compile Include="NotificationWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsWindow.cs" />
     <Compile Include="TimePicker.cs" />

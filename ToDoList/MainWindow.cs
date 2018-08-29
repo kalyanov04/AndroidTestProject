@@ -55,7 +55,11 @@ namespace ToDoList
             List<string> TaskNames = new List<string>(TaskItems.Count);
             foreach (var item in TaskItems)
             {
-                TaskNames.Add(item.FindElement(By.Id("com.avjindersinghsekhon.minimaltodo:id/todoListItemTimeTextView")).Text);
+                try
+                {
+                    TaskNames.Add(item.FindElement(By.Id("com.avjindersinghsekhon.minimaltodo:id/todoListItemTimeTextView")).Text);
+                }
+                catch (Exception) { }
             }
             return TaskNames;
         }

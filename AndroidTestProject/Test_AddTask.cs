@@ -27,8 +27,8 @@ namespace AndroidTestProject
         public void Test1_AddTaskWithoutReminder_TaskAdded(string taskName)
         {
             mainWindowInstance.AddButton.Click();
-            addWindowInstance.EditTextField.SendKeys(taskName);
-            addWindowInstance.ApproveButton.Click();
+            addWindowInstance.SetTaskName(taskName)
+                .ConfirmChanges();
             Assert.AreEqual(taskName, mainWindowInstance.GetTaskNames()[mainWindowInstance.GetTaskNames().Count - 1]);
         }
         [Test]

@@ -14,11 +14,10 @@ namespace ToDoList
         }
         public AndroidElement ExitButton { get => driver.FindElementByAccessibilityId("Navigate up"); }
         public AndroidElement EditTextField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/userToDoEditText"); }
-        public AndroidElement ApproveButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/makeToDoFloatingActionButton"); }
+        public AndroidElement ConfirmButton { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/makeToDoFloatingActionButton"); }
         public AndroidElement RemindSwitcher { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/toDoHasDateSwitchCompat"); }
         public AndroidElement EditDateField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoDateEditText"); }
         public AndroidElement EditTimeField { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newTodoTimeEditText"); }
-        public AndroidElement ReminderText { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newToDoDateTimeReminderTextView"); }
         public AndroidElement InfoTextView { get => driver.FindElementById("com.avjindersinghsekhon.minimaltodo:id/newToDoDateTimeReminderTextView"); }
         public DatePicker DatePickerInstance
         {
@@ -47,7 +46,35 @@ namespace ToDoList
                 }
             }
         }
-
+        public EditTaskWindow SetTaskName(string taskName)
+        {
+            EditTextField.SendKeys(taskName);
+            return this;
+        }
+        public EditTaskWindow SwitchReminder()
+        {
+            RemindSwitcher.Click();
+            return this;
+        }
+        public EditTaskWindow SetDate(string date)
+        {
+            EditDateField.Click();
+            DatePickerInstance.PickDate(date);
+            DatePickerInstance.ConfirmButton.Click();
+            return this;
+        }
+        public EditTaskWindow SetTime(string time)
+        {
+            EditTimeField.Click();
+            TimePickerInstance.ClockWidget.SendKeys(time);
+            TimePickerInstance.ConfirmButton.Click();
+            return this;
+        }
+        public EditTaskWindow ConfirmChanges()
+        {
+            ConfirmButton.Click();
+            return this;
+        }
         public bool IsOpened()
         {
             if (ExitButton.Enabled & EditTextField.Text.Equals("") & RemindSwitcher.GetAttribute("checked").Equals("false"))

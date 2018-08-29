@@ -25,18 +25,7 @@ namespace AndroidTestProject
         [Test]
         public void Test2_OpenSettingsWindow_Opened()
         {
-            mainWindowInstance.OptionsButton.Click();
-            foreach (var item in mainWindowInstance.Options)
-            {
-                try
-                {
-                    if (item.Text.Equals("Settings"))
-                    {
-                        item.Click();
-                        break;
-                    }
-                } catch (NoSuchElementException) { }
-            }          
+            mainWindowInstance.SelectOption("Settings");
             Assert.IsTrue(SettingsWindow.IsOpened(driver));
         }
         [Test]
