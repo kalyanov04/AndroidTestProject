@@ -73,7 +73,7 @@ namespace AndroidTestProject
             }
             do
             {
-                if (DateTime.Now.Minute == minutes + 1 && DateTime.Now.Second == 10)
+                if (DateTime.Now.Minute == minutes + 1 && DateTime.Now.Second == 15)
                     break;
             } while (true);
             driver.Swipe(750, 1, 750, 750, 350);
